@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import "@/assets/css/reset.css";
+
 import App from './App';
 
-import "./assets/css/reset.css"
-
 ReactDOM.render(
-    <App />,
+  <App />,
   document.getElementById('root')
 );
-
