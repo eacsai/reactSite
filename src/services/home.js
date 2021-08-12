@@ -5,3 +5,9 @@ export function getHomeBanners() {
     url: "/banner"
   })
 }
+
+export function getHomeWorks() {
+  return request({
+    url: "/works"
+  })
+}

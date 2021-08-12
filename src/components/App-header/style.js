@@ -7,7 +7,7 @@ export const HeaderWrapper = styled.div`
   height: 53px;
   background-color: #fff;
   border-bottom: 1px solid rgba(225, 225, 225);
-  
+  z-index: 99999;
   .header {
     display:flex;
     height: auto;

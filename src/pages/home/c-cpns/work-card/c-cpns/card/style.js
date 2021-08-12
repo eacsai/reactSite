@@ -1,44 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
-export const Works = styled.div`
-  display: flex;
-  margin-top: 30px;
-  .work-pages {
-    flex: 3;
-    text-align: center;
-    .content-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-top: 10px;
-      text-align: center;
-      color: #be9656;
-    }
-    .work-img {
-      display: inline-block;
-      /* margin: 0 auto; */
-      width: 50vw;
-      height: 25vw;
-      background: url("https://tva1.sinaimg.cn/large/008i3skNly1gt2l7bmum3j30jg0ep41u.jpg")
-        no-repeat;
-      background-size: cover;
-    }
-    .works-wrapper {
-      display: inline-block;
-      margin-bottom: 20px;
-      width: 80%;
-      columns: 2;
-      column-gap: 10px;
-    }
-    .view-more {
-      margin-top: 20px;
-      font-size: 16px;
-      font-family: "Varela Round";
-      font-weight: 400;
-      letter-spacing: 4px;
-    }
-  }
-  .card {
+export const CardStyle = styled.div`
     margin-top: 85px;
     flex: 1;
     display: flex;
@@ -83,17 +45,6 @@ export const Works = styled.div`
       flex-direction: column;
       justify-content: space-around;
     }
-  }
-`;
-export const WorksList = styled.div`
-  width: 30%;
-  height: 0;
-  padding-bottom: 30%;
-  min-width: 30%; // 加入这两个后每个item的宽度就生效了
-  max-width: 30%;
-  background: url(${(props) => props.img}) no-repeat;
-  background-size: cover;
-  margin: 10px auto;
 `;
 export const PagesList = styled.div`
   display: flex;
@@ -138,4 +89,14 @@ export const TypeList = styled.div`
     padding: 10px 0px;
     border-bottom: 1px solid #b7afaf;
   }
+`;
+export const WorksList = styled.div`
+  width: 30%;
+  height: 0;
+  padding-bottom: 30%;
+  min-width: 30%; // 加入这两个后每个item的宽度就生效了
+  max-width: 30%;
+  background: url(${(props) => props.img}) no-repeat;
+  background-size: cover;
+  margin: 10px auto;
 `;
