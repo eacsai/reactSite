@@ -17,7 +17,7 @@ const res = {
        'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
        'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
        'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
+       'https://tva1.sinaimg.cn/large/008i3skNly1gt3n6ecsftj30u00u0jz2.jpg',
        'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
        'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
        'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
