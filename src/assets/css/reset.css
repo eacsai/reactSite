@@ -5,6 +5,14 @@
   font-family: "Josefin";
   src: url("../font/JosefinSans-BoldItalic.ttf");
 }
+@font-face {
+  font-family: "Planet";
+  src: url("../font/ethnocentric\ rg\ it.ttf");
+}
+@font-face {
+  font-family: "Nature";
+  src: url("../font/Neutronium.ttf");
+}
 /* 样式的重置 */
 body,
 html,
@@ -138,4 +146,19 @@ img {
   margin: 0 auto;
   padding: 16px 0;
   border-bottom: 1px solid #887e7e4f;
+}
+
+.img-text{
+  color: #fff;
+  font-size:46px;
+  font-family: Planet;
+  font-weight: 300;
+  letter-spacing: 18px;
+}
+.img-subtext{
+  color: #fff;
+  font-size:26px;
+  font-family: Nature;
+  font-weight: 300;
+  letter-spacing: 6px;
 }

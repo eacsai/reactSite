@@ -2,6 +2,7 @@ import React, { memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import TopBanner from './c-cpns/top-banner';
 import Welcome from './c-cpns/welcome';
+import TopImg from './c-cpns/top-img'
 import WorkCard from './c-cpns/work-card';
 import {
   getHomeBannersAction, getHomePagesAction, getHomeWorksAction, getPageTypesAction
@@ -19,7 +20,8 @@ export default memo(function Home() {
 
   return (
     <div>
-      <TopBanner/>
+      {/* <TopBanner/> */}
+      <TopImg/>
       <Welcome/>
       <WorkCard/>
     </div>

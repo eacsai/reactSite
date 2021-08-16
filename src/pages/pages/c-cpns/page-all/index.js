@@ -21,7 +21,7 @@ export default memo(function PageAll() {
     pageData: state.getIn(["home", "homePages"]),
     types: state.getIn(["home", "pageTypes"]),
   }));
-
+  console.log(pageData);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const IconText = ({ icon, text }) => (
@@ -30,8 +30,8 @@ export default memo(function PageAll() {
       {text}
     </Space>
   );
-  const [listData, setListData] = useState(pageData)
-
+  const [listData, setListData] = useState(null)
+  console.log(listData)
   const indexChange = useCallback((item,index) => {
     console.log(item,pageData[0].type);
     setCurrentIndex(index);
@@ -68,7 +68,7 @@ export default memo(function PageAll() {
           },
           pageSize: 8,
         }}
-        dataSource={listData}
+        dataSource={listData ===null ? pageData:listData}
         renderItem={(item) => (
           <List.Item
             key={item.title}

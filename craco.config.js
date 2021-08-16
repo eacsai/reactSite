@@ -7,6 +7,12 @@ module.exports = {
       "@": resolve("src"),
       "components": resolve("src/components"),
       "pages": resolve("src/pages")
-    }
+    },
+    rules: [
+      {
+        test: /\.md$/,
+        use: "raw-loader"
+      },
+    ]
   }
 }

@@ -28,11 +28,11 @@ const routes = [
         )
       },
       {
-        path: "/pages/pageAll",
+        path: "/pages/pageAll/",
         component: PageAll,
       },
       {
-        path: "/pages/detail",
+        path: "/pages/detail/",
         component: Detail,
       },
     ],
