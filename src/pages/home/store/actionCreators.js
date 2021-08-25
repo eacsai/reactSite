@@ -1,5 +1,5 @@
 import * as actionTypes from './constants';
-// import { getHomeBanners,getHomeWorks } from '@/services/home';
+import { getPageDetail } from '@/services/home';
 const res = {
   banners: [
     "https://tva1.sinaimg.cn/large/008i3skNly1gt2g78krfoj30jg0epgnm.jpg",
@@ -58,7 +58,7 @@ const changeHomeWorksAction = (res) => ({
 
 const changeHomePagesAction = (res) => ({
   type: actionTypes.CHANGE_HOME_PAGES,
-  homePages: res.pages,
+  homePages: res.data,
 })
 
 const changePageTypesAction = (res) => ({
@@ -85,10 +85,9 @@ export const getHomeWorksAction = () => {
 
 export const getHomePagesAction = () => {
   return dispatch => {
-    // getHomePages().then(res => {
-    //   dispatch(changeHomeBannersAction(res));
-    // })
-    dispatch(changeHomePagesAction(res))
+    getPageDetail().then(res => {
+      dispatch(changeHomePagesAction(res));
+    }).catch(err => console.log(err));
   }
 }
 

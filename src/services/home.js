@@ -2,12 +2,12 @@ import request from './request';
 
 export function getHomeBanners() {
   return request({
-    url: "/banner"
+    url: "/default/index'"
   })
 }
 
-export function getHomeWorks() {
+export function getPageDetail() {
   return request({
-    url: "/works"
+    url: "/default/getArticleList"
   })
-}
+} 

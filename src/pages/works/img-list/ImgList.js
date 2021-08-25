@@ -41,42 +41,44 @@ export default memo(function ImgList(props) {
   };
 
   //定义图片加载函数
-  const waterFall = ()=>{
-      // 加载图片
-      const columns = 3; // 列数
-      const gap = 20; // 间隔
-      // 计算每一张图片的宽度
-      const itemWidth = imgListRef.current.clientWidth / columns - gap;
-      console.log(itemWidth);
-      if (isReSize) {
-        loadCount = 0;
-        arr = [];
-        isReSize = false;
+  const waterFall = () => {
+    // 加载图片
+    const columns = 3; // 列数
+    const gap = 20; // 间隔
+    // 计算每一张图片的宽度
+    const itemWidth = imgListRef.current.clientWidth / columns - gap;
+    console.log(itemWidth);
+    if (isReSize) {
+      loadCount = 0;
+      arr = [];
+      isReSize = false;
+    }
+    let tmpCount = loadCount;
+    let items = imgListRef.current.children;
+    for (let i = tmpCount; i < items.length; i++, tmpCount++) {
+      // 获取图片元素
+      const img = items[i].getElementsByTagName("img")[0];
+      console.log(img);
+      // 图片有缓存时直接布局(主要在窗口尺寸变化时调用)
+      if (img.complete) {
+        reflow(items[i], itemWidth, columns, gap);
       }
-      let tmpCount = loadCount;
-      let items = imgListRef.current.children;
-      for (let i = tmpCount; i < items.length; i++, tmpCount++) {
-        // 获取图片元素
-        const img = items[i].getElementsByTagName("img")[0];
-        console.log(img);
-        // 图片有缓存时直接布局(主要在窗口尺寸变化时调用)
-        if (img.complete) {
+      // 图片无缓存时先对加载速度快的图片进行布局
+      else {
+        img.addEventListener("load", () => {
           reflow(items[i], itemWidth, columns, gap);
-        }
-        // 图片无缓存时先对加载速度快的图片进行布局
-        else {
-          img.addEventListener("load", () => {
-            reflow(items[i], itemWidth, columns, gap);
-          });
-        }
+        });
       }
-      imgListRef.current.style.height = height + 500 + "px";
-      setLoadCount(tmpCount);
-  }
+    }
+    imgListRef.current.style.height = height + 500 + "px";
+    setLoadCount(tmpCount);
+  };
   useEffect(() => {
-    waterFall()
-
+    waterFall();
   });
+
+
+  
   // console.log(styles);
   return (
     <ImgListStyle>
@@ -113,7 +115,7 @@ export default memo(function ImgList(props) {
           );
         })}
       </div>
-      {/* <div style={{ display: "none" }}>
+      <div style={{ display: "none" }}>
         <Image.PreviewGroup
           preview={{ visible, onVisibleChange: (vis) => setVisible(vis) }}
         >
@@ -121,7 +123,7 @@ export default memo(function ImgList(props) {
             return <Image src={item} />;
           })}
         </Image.PreviewGroup>
-      </div> */}
+      </div>
     </ImgListStyle>
   );
 });

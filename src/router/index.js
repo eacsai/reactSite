@@ -49,6 +49,10 @@ const routes = [
     path: "/contact",
     component: Contact,
   },
+  {
+    path: "/login"
+    
+  }
 ];
 
 export default routes;

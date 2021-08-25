@@ -1,54 +1,38 @@
 import React, { memo } from "react";
 import { ContactStyle } from "./style";
-import { Input,Button } from "antd";
+import { Input, Button } from "antd";
 
 const { TextArea } = Input;
 export default memo(function Contact() {
-  const inputList = ["NAME:", "SUBJECT:", "EMAIL:"];
   return (
     <ContactStyle>
-      <div className="contact-header">
-        <div className="content-subtitle">Contact Me</div>
-        <div className="content-line1"></div>
-        <div className="content-sstitle">LETS GET INTOUCH</div>
+      <div class="image" style={{backgroundImage: "url('https://tva1.sinaimg.cn/large/008i3skNly1gtksrubuxkj61gs0u0wi702.jpg')"}}></div>
+      <div class="heading">
+        <h1>When you are confused</h1>
       </div>
-      <div className="contact-img"></div>
-      <div
-        className="content-text"
-        style={{ textAlign: "start", width: "80%", margin: "30px auto 10px" }}
-      >
-        Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum dolor sit
-        amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris
-        elementum accumsan leo vel tempor. Sit amet cursus nisl aliquam. Aliquam
-        et elit eu nunc rhoncus viverra quis at felis. Sed do.Lorem ipsum dolor
-        sit amet, consectetur Nulla fringilla purus Lorem ipsum dosectetur
-        adipisicing elit at leo dignissim congue. Mauris elementum accumsan leo
-        vel tempor.
+      <div class="text">
+        <h1>Set goals in your mind</h1>
       </div>
-      <div
-        className="content-text"
-        style={{ textAlign: "start", width: "80%", margin: "0px auto 10px" }}
-      >
-        Aliquam et elit eu nunc rhoncus viverra quis at felis et netus et
-        malesuada fames ac turpis egestas. Aenean commodo ligula eget dolor.
-        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-        montes
+      <div class="image" style={{backgroundImage: "url('https://tva1.sinaimg.cn/large/008i3skNly1gtr005wg7xj61c00u0wm702.jpg')"}}></div>
+      <div class="heading">
+        <h1>When you're down</h1>
       </div>
-      <form method="post" action="" className="input-form">
-        {inputList.map((item, index) => {
-          return (
-            <div className="input-group">
-              <div className="input-title">{item}</div>
-              <Input className="input-list" />
-            </div>
-          );
-        })}
-        <div className="input-group">
-          <div className="input-title">MESSAGE:</div>
-          <TextArea rows={8} className="input-message" />
-          <Button>Default</Button>
-        </div>
-      </form>
+      <div class="text">
+        <h1>Try to wake up the beast in your heart</h1>
+      </div>
+
+      <div class="image" style={{backgroundImage: "url('https://tva1.sinaimg.cn/large/008i3skNly1gtr00fsd10j61a90u0dmk02.jpg')"}}></div>
+      <div class="heading">
+        <h1>When prople leave you</h1>
+      </div>
+      <div class="text">
+        <h1>It's time to start your season</h1>
+      </div>
+
+      <div class="image" style={{backgroundImage: "url('https://tva1.sinaimg.cn/large/008i3skNly1gtr00uv7d4j32080u07n8.jpg')"}}></div>
+      <div class="heading">
+        <h1>Come on,stranger.</h1>
+      </div>
     </ContactStyle>
   );
 });

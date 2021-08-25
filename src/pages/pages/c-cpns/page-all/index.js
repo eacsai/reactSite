@@ -1,11 +1,14 @@
 import React, { memo, useState, useCallback, useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { List, Avatar, Space } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
-import { BackTop } from 'antd';
+import { BackTop } from "antd";
+import axios from 'axios';
+import marked from "@/utils/marked"
 import {
-  getHomePagesAction,getPageTypesAction,
-} from '@/pages/home/store/actionCreators'
+  getHomePagesAction,
+  getPageTypesAction,
+} from "@/pages/home/store/actionCreators";
 import { PageStyle, TypeList } from "./style";
 
 
@@ -15,7 +18,7 @@ export default memo(function PageAll() {
   useEffect(() => {
     dispatch(getHomePagesAction());
     dispatch(getPageTypesAction());
-  },[dispatch])
+  }, [dispatch]);
 
   const { pageData, types } = useSelector((state) => ({
     pageData: state.getIn(["home", "homePages"]),
@@ -30,29 +33,32 @@ export default memo(function PageAll() {
       {text}
     </Space>
   );
-  const [listData, setListData] = useState(null)
-  console.log(listData)
-  const indexChange = useCallback((item,index) => {
-    console.log(item,pageData[0].type);
-    setCurrentIndex(index);
-    if (item === 'All'){
-      setListData(pageData)
-    } else{
-      const tmpData = pageData.filter(page => page.type === item);
-      setListData(tmpData)
-    }
-  },[pageData])
+  const [listData, setListData] = useState(null);
+  console.log(listData);
+  const indexChange = useCallback(
+    (item, index) => {
+      console.log(item, pageData[0].type);
+      setCurrentIndex(index);
+      if (item === "All") {
+        setListData(pageData);
+      } else {
+        const tmpData = pageData.filter((page) => page.type === item);
+        setListData(tmpData);
+      }
+    },
+    [pageData]
+  );
 
   return (
     <PageStyle>
-      <BackTop/>
+      <BackTop />
       <TypeList>
         {types.map((item, index) => (
           <div className="type-list" key={index}>
             <text
               className={index === currentIndex ? "active" : ""}
               key={index}
-              onClick={() => indexChange(item,index)}
+              onClick={() => indexChange(item, index)}
             >
               {item}
             </text>
@@ -68,7 +74,7 @@ export default memo(function PageAll() {
           },
           pageSize: 8,
         }}
-        dataSource={listData ===null ? pageData:listData}
+        dataSource={listData === null ? pageData : listData}
         renderItem={(item) => (
           <List.Item
             key={item.title}
@@ -93,10 +99,11 @@ export default memo(function PageAll() {
           >
             <List.Item.Meta
               avatar={<Avatar src={item.avatar} />}
-              title={<a href={item.href}>{item.title}</a>}
+              title={<a href="http://localhost:3000/#/pages/detail">{item.title}</a>}
               description={item.description}
             />
-            {item.content}
+            <div dangerouslySetInnerHTML={{__html:marked(item.introduce.length>150? (item.introduce.slice(0,150)+"...") : item.introduce)}}>
+            </div>
           </List.Item>
         )}
       />

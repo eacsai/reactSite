@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ArtStyle = styled.div`
   display: inline-block;
   margin-bottom: 20px;
-  width: 80%;
+  width: 100%;
   columns: 2;
   column-gap: 10px;
   .work-list {

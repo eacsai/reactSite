@@ -11,10 +11,16 @@ export default memo(function TopImg() {
     window.addEventListener("resize", imgSize);
   });
   return (
-    <ImgStyle >
-      <div style={{ height, width }} className="top-img">
-        <div class="img-text">Inno's Blog</div>
-        <div class="img-subtext">Welcome to My World</div>
+    <ImgStyle style={{ height, width }}>
+      <div className="a">
+        {/* <div class="img-text">Inno's Blog</div>
+        <div class="img-subtext">Welcome to My World</div> */}
+        <div className="b"></div>
+        <div className="c"></div>
+        <div className="d"></div>
+        <div className="e"></div>
+        <p className="f">LONELY GOAT</p>
+        <a className="h">Login / Regist</a>
       </div>
     </ImgStyle >
   );

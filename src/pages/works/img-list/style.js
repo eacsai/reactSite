@@ -1,9 +1,10 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const ImgListStyle = styled.div`
-  .works-img{
+  .works-img {
     height: 700px;
-    background: url("https://tva1.sinaimg.cn/large/008i3skNly1gtiotlx69qj61ij0u0ans02.jpg") no-repeat;
+    background: url("https://tva1.sinaimg.cn/large/008i3skNly1gtr005wg7xj61c00u0wm702.jpg")
+      no-repeat;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -23,4 +24,7 @@ export const ImgListStyle = styled.div`
     width: 66%;
     position: relative;
   }
-`
+  canvas {
+    background-image: radial-gradient(#666, #333);
+  }
+`;

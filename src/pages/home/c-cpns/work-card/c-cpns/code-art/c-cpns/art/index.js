@@ -12,7 +12,7 @@ export default memo(function Art() {
   console.log('----', homeWorks);
   return (
     <ArtStyle>
-      {homeWorks.slice(0, 4).map((item, index) => {
+      {homeWorks.slice(0, 5).map((item, index) => {
         return (
           <img
             src={item}

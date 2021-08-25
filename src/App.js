@@ -18,7 +18,6 @@ export default memo(function App() {
         <Suspense fallback={<div>page loading</div>}>
           {renderRoutes(routes)}
         </Suspense>
-        <AppFooter />
       </HashRouter>
     </Provider>
   );

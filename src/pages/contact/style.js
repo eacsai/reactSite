@@ -1,55 +1,35 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const ContactStyle = styled.div`
-  display: flex;
-  width: 60%;
-  margin: 50px auto;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(53px);
-  .contact-img{
-    margin: 10px;
-    width: 80%;
-    height: 600px;
-    background: url('https://tva1.sinaimg.cn/large/008i3skNly1gt2l7bmum3j30jg0ep41u.jpg') center no-repeat;
-    background-size: cover;
-  }
-  .input-form {
-    width: 100%;
-  }
-  .input-group {
-    width:100%;
+  height: 100vh;
+  overflow-x: hidden;
+  perspective: 3px;
+
+  div {
+    position: relative;
     display: flex;
-    justify-content:space-around;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .input-title{
-    width: 80%;
-    margin:0px auto;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    font-style: 30px;
     letter-spacing: 2px;
   }
-  .input-list {
-    margin:10px auto;
-    width: 80%;
-    height: 40px;
+  .image {
+    transform: translateZ(-1px) scale(1.6);
+    background-size: cover;
+    height: 100vh;
+    z-index: -1;
   }
-  .input-message {
-    position:relative;
-    width: 80%;
-    margin:10px auto;
+  .text {
+    height: 50vh;
+    background-color: #fff;
   }
-  .ant-btn{
-    position: absolute;
-    bottom: -30px;
-    left: 127px;
-    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
-    background-color: #888888;
-    color: #ffffff;
-    border-color: #888888;
+  .text h1 {
+    color: #000;
   }
-`
+  .heading {
+    z-index: -1;
+    transform: translateY(-30vh) translateZ(1px);
+    color: #fff;
+    font-size: 30px;
+  }
+`;

@@ -4,6 +4,7 @@ import TopBanner from './c-cpns/top-banner';
 import Welcome from './c-cpns/welcome';
 import TopImg from './c-cpns/top-img'
 import WorkCard from './c-cpns/work-card';
+import AppFooter from "../../components/App-footer";
 import {
   getHomeBannersAction, getHomePagesAction, getHomeWorksAction, getPageTypesAction
 } from "./store/actionCreators.js";
@@ -24,6 +25,7 @@ export default memo(function Home() {
       <TopImg/>
       <Welcome/>
       <WorkCard/>
+      <AppFooter />
     </div>
   );
 });
