@@ -5,6 +5,7 @@ import PageAll from "pages/pages/c-cpns/page-all";
 import Detail from "pages/pages/c-cpns/detail";
 import Works from "pages/works";
 import Contact from "pages/contact";
+import Login from "pages/login";
 const routes = [
   {
     path: "/",
@@ -50,8 +51,8 @@ const routes = [
     component: Contact,
   },
   {
-    path: "/login"
-    
+    path: "/login",
+    component: Login,
   }
 ];
 

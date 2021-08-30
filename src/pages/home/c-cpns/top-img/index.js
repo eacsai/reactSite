@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import { ImgStyle } from "./style";
 export default memo(function TopImg() {
   const [height, setHeight] = useState(document.body.clientHeight);
@@ -20,7 +21,7 @@ export default memo(function TopImg() {
         <div className="d"></div>
         <div className="e"></div>
         <p className="f">LONELY GOAT</p>
-        <a className="h">Login / Regist</a>
+        <Link to='/login' className="h">Login / Regist</Link>
       </div>
     </ImgStyle >
   );
