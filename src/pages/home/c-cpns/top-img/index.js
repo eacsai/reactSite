@@ -21,7 +21,7 @@ export default memo(function TopImg() {
         <div className="d"></div>
         <div className="e"></div>
         <p className="f">LONELY GOAT</p>
-        <Link to='/login' className="h">Login / Regist</Link>
+        <Link to='/login/login' className="h">Login / Regist</Link>
       </div>
     </ImgStyle >
   );

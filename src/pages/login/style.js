@@ -8,10 +8,15 @@ export const LoginStyle = styled.div`
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(to bottom, #f1f4f9, #dff1ff);
+  background: url('https://tva1.sinaimg.cn/large/008i3skNly1gu97h7l7rzj61hc0u0nji02.jpg') no-repeat;
+  background-size: cover;
   .color {
     position: absolute;
     filter: blur(200px);
+  }
+  .sign-upload {
+    display: flex;
+    justify-content: space-between
   }
   .color:nth-child(1) {
     top: -350px;
@@ -116,24 +121,6 @@ export const LoginStyle = styled.div`
     filter: hue-rotate(calc(5 * 70deg));
   }
 
-  /* 登录框样式 */
-
-  /* .container {
-    position: relative;
-    width: 400px;
-    min-height: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  } */
-
-  /* 登录标题样式 */
 
   .form h2 {
     position: relative;
@@ -221,6 +208,7 @@ export const LoginStyle = styled.div`
   .over {
     position: relative;
     width: 400px;
+    height: 450px;
     min-height: 400px;
     background: rgba(255, 255, 255, 0.1);
     display: flex;
@@ -235,7 +223,7 @@ export const LoginStyle = styled.div`
   }
 
   .change {
-    background-color: #ffb8ce;
+    background-color: rgba(200, 231, 198);
     color: white;
     width: 280px;
     padding: 8px 0;
@@ -256,7 +244,6 @@ export const LoginStyle = styled.div`
   .form {
     position: absolute;
     width: 100%;
-    height: 100%;
     padding: 50px;
     transform-style: preserve-3d;
   }

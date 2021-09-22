@@ -1,5 +1,5 @@
-import React, { memo, createElement, useState, useEffect} from "react";
-import { useSelector,useDispatch } from "react-redux";
+import React, { memo, createElement, useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Comment,
   Form,
@@ -23,31 +23,65 @@ import marked from "marked";
 import hljs from "highlight.js";
 import "highlight.js/styles/monokai-sublime.css";
 
-import {
-  getHomePagesAction,
-} from "@/pages/home/store/actionCreators";
+import { getHomePagesAction } from "@/pages/home/store/actionCreators";
 
 import { DetailStyle } from "./style";
 import Tocify from "@/components/tocify";
-
-export default memo(function Detail() {
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
-  const [action, setAction] = useState(null);
+import { setComment } from "@/services/detail";
+import { getComment } from "@/services/detail";
+export default memo(function Detail(props) {
+  const [isHide1, setIsHide1] = useState(true);
+  const [isHide2, setIsHide2] = useState(false);
   const { TextArea } = Input;
   const dispatch = useDispatch();
+  const contentRef = useRef()
   useEffect(() => {
     dispatch(getHomePagesAction());
   }, [dispatch]);
 
-  const { pageData } = useSelector((state) => ({
+  const mydate = new Date();
+  const { pageData, data } = useSelector((state) => ({
     pageData: state.getIn(["home", "homePages"]),
+    data: state.getIn(["login", "data"]),
   }));
-  
-  let tmpText = pageData[0]&&pageData[0].content;
-  if(tmpText === undefined){
-    tmpText = ''
+  const { token, username, avatar } = data;
+  const [commentList, setCommentList] = useState([]);
+  const [topHide,setTopHide] = useState(false);
+  const scroll = ()=>{
+    document.documentElement.scrollTop < (contentRef?.current.offsetHeight+300) ? setTopHide(false) : setTopHide(true)
   }
+  useEffect(() => {
+    // data === 'success' ? setIsHide1(false) : setIsHide1(true)
+    if (token) {
+      setIsHide2(true);
+      setIsHide1(false);
+    } else {
+      setIsHide1(true);
+      setIsHide2(false);
+    }
+    getComment().then((res) => {
+      setCommentList(res.data);
+    });
+    window.addEventListener('scroll', ()=>{
+      scroll()
+    })
+    return (()=>{
+      window.removeEventListener('scroll', ()=>{
+        scroll()
+      })
+    })
+  }, []);
+  console.log(topHide)
+  let tmpText = pageData && pageData[0] && pageData[0].content;
+  if (tmpText === undefined) {
+    tmpText = "";
+  }
+  const toLogin = () => {
+    props.history.push("/login/login");
+  };
+  const toSignin = () => {
+    props.history.push("/login/signin");
+  };
   //markdown配置:
   const renderer = new marked.Renderer();
   const tocify = new Tocify();
@@ -69,144 +103,99 @@ export default memo(function Detail() {
     },
   });
 
-  //评论相关参数
-  const [value, setValue] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-
-  const Editor = ({ onChange, onSubmit, submitting, value }) => (
-    <>
-      <Form.Item>
-        <TextArea rows={4} onChange={onChange} value={value} />
-      </Form.Item>
-      <Form.Item>
-        <Button
-          htmlType="submit"
-          loading={submitting}
-          onClick={onSubmit}
-          type="primary"
-        >
-          Add Comment
-        </Button>
-      </Form.Item>
-    </>
-  );
-
-  const handleChange = () => {};
-  const handleSubmit = () => {};
-  const like = () => {
-    setLikes(1);
-    setDislikes(0);
-    setAction("liked");
+  let comment = "";
+  const onChange = (e) => {
+    comment = e.target.value;
   };
 
-  const dislike = () => {
-    setLikes(0);
-    setDislikes(1);
-    setAction("disliked");
+  const commitComment = () => {
+    const date = mydate.toLocaleDateString();
+    setComment(username, comment, date, avatar);
+    let tmpList = [...commentList, { comment, username, date, avatar }];
+    setCommentList(tmpList);
   };
-
-  const actions = [
-    <Tooltip key="comment-basic-like" title="Like">
-      <span onClick={like}>
-        {createElement(action === "liked" ? LikeFilled : LikeOutlined)}
-        <span className="comment-action">{likes}</span>
-      </span>
-    </Tooltip>,
-    <Tooltip key="comment-basic-dislike" title="Dislike">
-      <span onClick={dislike}>
-        {React.createElement(
-          action === "disliked" ? DislikeFilled : DislikeOutlined
-        )}
-        <span className="comment-action">{dislikes}</span>
-      </span>
-    </Tooltip>,
-    <span key="comment-basic-reply-to">Reply to</span>,
-  ];
 
   return (
     <div style={{ backgroundColor: "rgb(244, 245, 245)" }}>
       <DetailStyle>
         <div className="detail-content">
-          <div
-            className="page-content"
-            dangerouslySetInnerHTML={{ __html: marked(tmpText) }}
-          ></div>
-          <div className="content-subtitle">2 Comments</div>
+          <div className="page-content" ref={contentRef} >
+            <div
+              className="content-markdown"
+              dangerouslySetInnerHTML={{ __html: marked(tmpText) }}
+            ></div>
+          </div>
+          <div className="content-subtitle">{commentList.length} Comments</div>
           <div className="content-line2"></div>
-          <Comment
-            actions={actions}
-            author={<a>Han Solo</a>}
-            avatar={
-              <Avatar
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                alt="Han Solo"
-              />
-            }
-            content={
-              <p>
-                We supply a series of design principles, practical patterns and
-                high quality design resources (Sketch and Axure), to help people
-                create their product prototypes beautifully and efficiently.
-              </p>
-            }
-            datetime={
-              <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-                <span>{moment().fromNow()}</span>
-              </Tooltip>
-            }
-          />
-          <Comment
-            actions={actions}
-            author={<a>Han Solo</a>}
-            avatar={
-              <Avatar
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                alt="Han Solo"
-              />
-            }
-            content={
-              <p>
-                We supply a series of design principles, practical patterns and
-                high quality design resources (Sketch and Axure), to help people
-                create their product prototypes beautifully and efficiently.
-              </p>
-            }
-            datetime={
-              <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-                <span>{moment().fromNow()}</span>
-              </Tooltip>
-            }
-          />
-          <Comment
-            avatar={
-              <Avatar
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                alt="Han Solo"
-              />
-            }
-            content={
-              <Editor
-                onChange={handleChange}
-                onSubmit={handleSubmit}
-                submitting={false}
-                value={""}
-              />
-            }
-          />
+          {commentList?.map((item) => {
+            return (
+              <div style={{ display: "flex",width: "100%", justifyContent: 'flex-start'}}>
+                <Avatar
+                  size={45}
+                  src={item.avatar}
+                  style={{ marginRight: "20px",marginTop: "20px" }}
+                />
+                <Comment
+                  style={{flex: "1"}}
+                  author={<a style={{ color: "#fff" }}>{item.username}</a>}
+                  content={<p>{item.comment}</p>}
+                  datetime={
+                    <Tooltip title={item.date}>
+                      <span style={{ color: "#fff" }}>{item.date}</span>
+                    </Tooltip>
+                  }
+                />
+              </div>
+            );
+          })}
+          <div className="login">
+            <div className="content-subtitle" style={{ marginTop: "50px" }}>
+              Post a comment
+            </div>
+            <div className="content-line2"></div>
+            {/* 未登录 */}
+            <div className={`content-box ${isHide2 === true ? "hidden" : ""}`}>
+              <div className="content-text">
+                Before you comment, please first
+              </div>
+              <div
+                className="content-login"
+                style={{ background: "skyblue" }}
+                onClick={toLogin}
+              >
+                sign in
+              </div>
+              <div className="content-text">Or</div>
+              <div
+                className="content-login"
+                style={{ background: "hotpink" }}
+                onClick={toSignin}
+              >
+                sign up
+              </div>
+            </div>
+            {/* 已登陆 */}
+            <div className={`reader ${isHide1 === true ? "hidden" : ""}`}>
+              <Avatar size={45} src={avatar} style={{ marginRight: "20px" }} />
+              <div className="reader-text">
+                <div>{username}</div>
+                <div>{mydate.toLocaleDateString()}</div>
+              </div>
+            </div>
+            <div className="text-bg">
+              <TextArea rows={4} onChange={onChange} />
+            </div>
+            <div
+              className="submit-button"
+              onClick={commitComment}
+              style={{ cursor: "pointer" }}
+            >
+              <span>Button</span>
+              <div className="wave"></div>
+            </div>
+          </div>
         </div>
-        <div className="anchor">
-          {/* <Anchor>
-            <div className="markNav-title">文章目录</div>
-            <MarkNav
-              updateHashAuto={false}
-              className="article-menu"
-              source={input}
-              headingTopOffset={80}
-            />
-          </Anchor> */}
-          <div className="nav-title">文章目录</div>
-          <div className="toc-list">{tocify && tocify.render()}</div>{" "}
-        </div>
+        <div className={`toc ${topHide ? 'top-hide': 'top-show'}`}>{tocify && tocify.render()}</div>
       </DetailStyle>
     </div>
   );

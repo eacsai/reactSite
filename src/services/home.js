@@ -11,3 +11,10 @@ export function getPageDetail() {
     url: "/default/getArticleList"
   })
 } 
+
+export function getPic() {
+  return request({
+    url: "/default/getPic"
+  })
+}
+

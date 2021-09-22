@@ -17,12 +17,11 @@ export default memo(function Works() {
     }),
     shallowEqual
   );
-
   return (
-    <ArtStyle>
-      <BackTop />
+    <ArtStyle>ß
+      <BackTop/>
       <ImgList workImages = {workImages}></ImgList>
-      <AppFooter />
+      <AppFooter/>
     </ArtStyle>
   );
 });

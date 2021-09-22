@@ -15,35 +15,6 @@ const res = {
     "https://tva1.sinaimg.cn/large/008i3skNly1gt3n6bnztwj30u00u0q9l.jpg",
     "https://tva1.sinaimg.cn/large/008i3skNly1gt3nvolbv5j30u00u0n6y.jpg"
   ],
-  pages: [
-    {
-      title: "Blog1",
-      avatar: "https://tva1.sinaimg.cn/large/008i3skNly1gt3l2r1d36j30u00u0wji.jpg",
-      pic: "https://tva1.sinaimg.cn/large/008i3skNly1gt2g78krfoj30jg0epgnm.jpg",
-      date: "July 10, 2015",
-      type: "Net",
-      href: "http://localhost:3000/#/pages/detail",
-      content: "Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum dolor sit amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris elementum accumsan leo vel tempor. Sit amet cursus nisl aliquam. …"
-    },
-    {
-      title: "Blog2",
-      avatar: "https://tva1.sinaimg.cn/large/008i3skNly1gt3l2r1d36j30u00u0wji.jpg",
-      pic: "https://tva1.sinaimg.cn/large/008i3skNly1gt2l7bmum3j30jg0ep41u.jpg",
-      date: "July 12, 2015",
-      type: "Net",
-      href: "http://localhost:3000/#/pages/detail",
-      content: "Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum dolor sit amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris elementum accumsan leo vel tempor. Sit amet cursus nisl aliquam. …"
-    },
-    {
-      title: "Blog3",
-      avatar: "https://tva1.sinaimg.cn/large/008i3skNly1gt3l2r1d36j30u00u0wji.jpg",
-      pic: "https://tva1.sinaimg.cn/large/008i3skNly1gt2l744toyj308c05kjrl.jpg",
-      date: "July 15, 2015",
-      type: "Net",
-      href: "http://localhost:3000/#/pages/detail",
-      content: "Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum dolor sit amet, consectetur Nulla fringilla purus at leo dignissim congue. Mauris elementum accumsan leo vel tempor. Sit amet cursus nisl aliquam. …"
-    }
-  ],
   types: ['All','Net','Golang',"Vue"]
 }
 const changeHomeBannersAction = (res) => ({

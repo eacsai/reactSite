@@ -1,45 +1,15 @@
-import * as actionTypes from './constants';
-// import { getHomeBanners,getHomeWorks } from '@/services/home';
-const res = {
-  img:['https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt3nvolbv5j30u00u0n6y.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt3n6ecsftj30u00u0jz2.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-       'https://tva1.sinaimg.cn/large/008i3skNly1gt2l7126hij30jg0ep40r.jpg',
-      ],
-}
+import * as actionTypes from "./constants";
+import { getPic } from '@/services/home';
 
 const changeWorksImageAction = (res) => ({
   type: actionTypes.CHANGE_WORKS_IMAGES,
-  workImages: res.img,
-})
+  workImages: res.data
+});
 
 export const getPageTypesAction = () => {
-  return dispatch => {
-    dispatch(changeWorksImageAction(res))
-  }
-}
+  return (dispatch) => {
+    getPic().then(res => {
+      dispatch(changeWorksImageAction(res));
+    })
+  };
+};

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Anchor } from 'antd';
-import { last } from 'lodash';
+import React from "react";
+import { Anchor } from "antd";
+import { last } from "lodash";
 
 const { Link } = Anchor;
 
@@ -23,33 +23,38 @@ export default class Tocify {
     this.tocItems = [];
   }
 
-  add(text: string, level: number, id: string = '') {
-    const count = this.anchors.filter(anchor => anchor === text).length;
+  add(text: string, level: number, id: string = "") {
+    const count = this.anchors.filter((anchor) => anchor === text).length;
     const anchor = id || (count ? `${text}${count}` : text);
     this.anchors.push(anchor);
     const item = { anchor, level, text };
     const items = this.tocItems;
 
-    if (items.length === 0) { // 第一个 item 直接 push
+    if (items.length === 0) {
+      // 第一个 item 直接 push
       items.push(item);
     } else {
       let lastItem = last(items) as TocItem; // 最后一个 item
-      if (item.level > lastItem.level) { // item 是 lastItem 的 children
+      if (item.level > lastItem.level) {
+        // item 是 lastItem 的 children
         for (let i = lastItem.level + 1; i <= 6; i++) {
           const { children } = lastItem;
-          if (!children) { // 如果 children 不存在
+          if (!children) {
+            // 如果 children 不存在
             lastItem.children = [item];
             break;
           }
 
           lastItem = last(children) as TocItem; // 重置 lastItem 为 children 的最后一个 item
 
-          if (item.level <= lastItem.level) { // item level 小于或等于 lastItem level 都视为与 children 同级
+          if (item.level <= lastItem.level) {
+            // item level 小于或等于 lastItem level 都视为与 children 同级
             children.push(item);
             break;
           }
         }
-      } else { // 置于最顶级
+      } else {
+        // 置于最顶级
         items.push(item);
       }
     }
@@ -62,9 +67,14 @@ export default class Tocify {
     this.anchors = [];
   };
 
-  renderToc(items: TocItem[]) { // 递归 render
-    return items.map(item => (
-      <Link key={item.anchor} href={`#/pages/detail/${item.anchor}`} title={item.text}>
+  renderToc(items: TocItem[]) {
+    // 递归 render
+    return items.map((item) => (
+      <Link
+        key={item.anchor}
+        href={`#/pages/detail/${item.anchor}`}
+        title={item.text}
+      >
         {item.children && this.renderToc(item.children)}
       </Link>
     ));
@@ -72,7 +82,19 @@ export default class Tocify {
 
   render() {
     return (
-      <Anchor style={{ padding: 24 }} affix showInkInFixed offsetTop={100}>
+      <Anchor
+        style={{
+          borderRadius: '20px',
+          margin: "100px 20px 0px 0px",
+          padding: 24,
+          background: " #e9eff1;",
+          boxShadow: "19px 19px 38px #bebebe,-19px -19px 38px #ffffff",
+        }}
+        affix
+        showInkInFixed
+        offsetTop={200}
+      >
+        <div>文章目录</div>
         {this.renderToc(this.tocItems)}
       </Anchor>
     );

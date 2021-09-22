@@ -51,7 +51,7 @@ const routes = [
     component: Contact,
   },
   {
-    path: "/login",
+    path: "/login/:switch",
     component: Login,
   }
 ];
