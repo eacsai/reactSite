@@ -18,10 +18,10 @@ export default memo(function Works() {
     shallowEqual
   );
   return (
-    <ArtStyle>ß
+    <ArtStyle>
       <BackTop/>
       <ImgList workImages = {workImages}></ImgList>
       <AppFooter/>
-    </ArtStyle>
+    </ArtStyle> 
   );
 });
