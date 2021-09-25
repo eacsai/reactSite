@@ -1,22 +1,11 @@
-import React, { memo, createElement, useState, useEffect, useRef } from "react";
+import { memo, useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Comment,
-  Form,
-  Button,
-  List,
   Input,
   Tooltip,
   Avatar,
-  Anchor,
 } from "antd";
-import moment from "moment";
-import {
-  DislikeOutlined,
-  LikeOutlined,
-  DislikeFilled,
-  LikeFilled,
-} from "@ant-design/icons";
 
 //markdown
 import marked from "marked";
@@ -70,7 +59,7 @@ export default memo(function Detail(props) {
         scroll()
       })
     })
-  }, []);
+  }, [token]);
   console.log(topHide)
   let tmpText = pageData && pageData[0] && pageData[0].content;
   if (tmpText === undefined) {
@@ -137,7 +126,7 @@ export default memo(function Detail(props) {
                 />
                 <Comment
                   style={{flex: "1"}}
-                  author={<a style={{ color: "#fff" }}>{item.username}</a>}
+                  author={<div style={{ color: "#fff" }}>{item.username}</div>}
                   content={<p>{item.comment}</p>}
                   datetime={
                     <Tooltip title={item.date}>

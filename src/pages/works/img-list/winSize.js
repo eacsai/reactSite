@@ -34,6 +34,6 @@ export default function useWinSize() {
         run()
       });
     };
-  }, []);
+  }, [onResize]);
   return size;
 }

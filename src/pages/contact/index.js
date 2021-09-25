@@ -1,8 +1,5 @@
-import { Input } from "antd";
-import React, { memo } from "react";
+import { memo } from "react";
 import { ContactStyle } from "./style";
-
-const { TextArea } = Input;
 export default memo(function Contact() {
   return (
     <ContactStyle>

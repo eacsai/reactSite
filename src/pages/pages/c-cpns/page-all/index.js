@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { List, Avatar, Space } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
 import { BackTop } from "antd";
-import axios from 'axios';
 import marked from "@/utils/marked"
 import {
   getHomePagesAction,

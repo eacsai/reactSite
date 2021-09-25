@@ -1,5 +1,5 @@
 import { Image, Input } from "antd";
-import React, { memo, useEffect, useCallback, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { ImgListStyle } from "./style";
 import useSize from "./winSize";
 export default memo(function ImgList(props) {
@@ -8,21 +8,12 @@ export default memo(function ImgList(props) {
   const imgListRef = useRef();
   const [visible, setVisible] = useState(false);
   let [preImag, setPreImag] = useState([]);
-  const [isReSize, setIsReSize] = useState(false);
+
   const [height, setHeight] = useState(0);
   const size = useSize();
 
   useEffect(() => {
-    waterFall();
-  }, [imgListRef.current, size]);
-
-  useEffect(() => {
-    imgListRef.current.style.height = height + 700 + "px";
-  }, [height]);
-
-  const onSearch = (value) => console.log(value);
-  //定义图片加载函数
-  const waterFall = () => {
+    //定义图片加载函数
     imgListRef.current.style.width = size.width * 0.66 + "px";
     // 加载图片
     const columns = 2; // 列数
@@ -30,7 +21,6 @@ export default memo(function ImgList(props) {
     // 计算每一张图片的宽度
     let itemWidth = Math.max(size.width * 0.66, 1200) / columns - gap;
     const arr = [];
-    setIsReSize(false);
     let tmpCount = 0;
     let items = imgListRef.current.children;
     for (let i = 0; i < items.length; i++, tmpCount++) {
@@ -47,7 +37,14 @@ export default memo(function ImgList(props) {
         });
       }
     }
-  };
+  }, [size]);
+
+  useEffect(() => {
+    imgListRef.current.style.height = height + 700 + "px";
+  }, [height]);
+
+  const onSearch = (value) => console.log(value);
+
   const reflow = (el, itemWidth, columns, gap, arr) => {
     el.style.width = itemWidth + "px";
     console.log("===== arr.length =====", arr.length);

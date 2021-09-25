@@ -67,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.2.0",
     "gsap": "^3.7.1",
     "raw-loader": "^4.0.2"
   }

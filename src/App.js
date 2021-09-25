@@ -7,7 +7,6 @@ import{ Provider } from 'react-redux'
 import routes from "./router";
 import store from "./store"
 //组件
-import AppFooter from "components/App-footer";
 import AppHeader from "components/App-header";
 
 export default memo(function App() {

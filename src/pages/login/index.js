@@ -1,13 +1,10 @@
-import React, { memo, useRef, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Script from "react-load-script";
 import Avatar from "./c-cpns/avatar/index";
 import { LoginStyle } from "./style.js";
 import { getSignAction, getLoginAction } from "./store/actionCreators";
 
 export default memo(function Login(props) {
-  const can = useRef();
-  console.log(props.match.params.switch);
   const [show, setShow] = useState(false);
   const [name, setName] = useState(null);
   const [avatarImg, setAvatarImg] = useState(null)
@@ -30,7 +27,7 @@ export default memo(function Login(props) {
     } else if (props.match.params.switch === "signin") {
       setShow(true);
     }
-  }, []);
+  }, [props.match.params]);
 
   return (
     <LoginStyle>
