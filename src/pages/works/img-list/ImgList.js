@@ -11,7 +11,6 @@ export default memo(function ImgList(props) {
 
   const [height, setHeight] = useState(0);
   const size = useSize();
-
   useEffect(() => {
     //定义图片加载函数
     imgListRef.current.style.width = size.width * 0.66 + "px";
@@ -22,7 +21,7 @@ export default memo(function ImgList(props) {
     let itemWidth = Math.max(size.width * 0.66, 1200) / columns - gap;
     const arr = [];
     let tmpCount = 0;
-    let items = imgListRef.current.children;
+    let items = Array.from(imgListRef.current.children);
     for (let i = 0; i < items.length; i++, tmpCount++) {
       // 获取图片元素
       const img = items[i].getElementsByTagName("img")[0];
@@ -37,7 +36,7 @@ export default memo(function ImgList(props) {
         });
       }
     }
-  }, [size]);
+  }, [size, workImages]);
 
   useEffect(() => {
     imgListRef.current.style.height = height + 700 + "px";
@@ -47,7 +46,6 @@ export default memo(function ImgList(props) {
 
   const reflow = (el, itemWidth, columns, gap, arr) => {
     el.style.width = itemWidth + "px";
-    console.log("===== arr.length =====", arr.length);
     // 第一行
     if (arr.length < columns) {
       el.style.top = 0;
@@ -60,7 +58,6 @@ export default memo(function ImgList(props) {
       const minHeight = Math.min(...arr);
       // 当前高度最小的列下标
       const index = arr.indexOf(minHeight);
-      console.log(index, minHeight);
       el.style.top = minHeight + gap + "px";
       el.style.left = (itemWidth + gap) * index + "px";
       arr[index] = arr[index] + el.offsetHeight + gap;
