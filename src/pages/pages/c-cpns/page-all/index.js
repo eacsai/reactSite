@@ -98,7 +98,7 @@ export default memo(function PageAll() {
           >
             <List.Item.Meta
               avatar={<Avatar src={item.avatar} />}
-              title={<a href="http://innovise.top/#/pages/detail">{item.title}</a>}
+              title={<a href="https://innovise.top/#/pages/detail">{item.title}</a>}
               description={item.description}
             />
             <div dangerouslySetInnerHTML={{__html:marked(item.introduce.length>150? (item.introduce.slice(0,150)+"...") : item.introduce)}}>
