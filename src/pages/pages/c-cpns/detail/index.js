@@ -1,11 +1,6 @@
 import { memo, useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Comment,
-  Input,
-  Tooltip,
-  Avatar,
-} from "antd";
+import { Comment, Input, Tooltip, Avatar } from "antd";
 
 //markdown
 import marked from "marked";
@@ -23,7 +18,7 @@ export default memo(function Detail(props) {
   const [isHide2, setIsHide2] = useState(false);
   const { TextArea } = Input;
   const dispatch = useDispatch();
-  const contentRef = useRef()
+  const contentRef = useRef();
   useEffect(() => {
     dispatch(getHomePagesAction());
   }, [dispatch]);
@@ -35,10 +30,16 @@ export default memo(function Detail(props) {
   }));
   const { token, username, avatar } = data;
   const [commentList, setCommentList] = useState([]);
-  const [topHide,setTopHide] = useState(false);
-  const scroll = ()=>{
-    document.documentElement.scrollTop < (contentRef?.current.offsetHeight+300) ? setTopHide(false) : setTopHide(true)
-  }
+  const [topHide, setTopHide] = useState(false);
+  const scroll = () => {
+    if(!contentRef?.current){
+      console.log('!!!!!!')
+      return
+    }
+    document?.documentElement.scrollTop < contentRef?.current?.offsetHeight + 300
+      ? setTopHide(false)
+      : setTopHide(true);
+  };
   useEffect(() => {
     // data === 'success' ? setIsHide1(false) : setIsHide1(true)
     if (token) {
@@ -51,16 +52,16 @@ export default memo(function Detail(props) {
     getComment().then((res) => {
       setCommentList(res.data);
     });
-    window.addEventListener('scroll', ()=>{
-      scroll()
-    })
-    return (()=>{
-      window.removeEventListener('scroll', ()=>{
-        scroll()
-      })
-    })
+    window.addEventListener("scroll", () => {
+      scroll();
+    });
+    return () => {
+      window.removeEventListener("scroll", () => {
+        scroll();
+      });
+    };
   }, [token]);
-  console.log(topHide)
+  console.log(topHide);
   let tmpText = pageData && pageData[0] && pageData[0].content;
   if (tmpText === undefined) {
     tmpText = "";
@@ -108,7 +109,7 @@ export default memo(function Detail(props) {
     <div style={{ backgroundColor: "rgb(244, 245, 245)" }}>
       <DetailStyle>
         <div className="detail-content">
-          <div className="page-content" ref={contentRef} >
+          <div className="page-content" ref={contentRef}>
             <div
               className="content-markdown"
               dangerouslySetInnerHTML={{ __html: marked(tmpText) }}
@@ -118,14 +119,20 @@ export default memo(function Detail(props) {
           <div className="content-line2"></div>
           {commentList?.map((item) => {
             return (
-              <div style={{ display: "flex",width: "100%", justifyContent: 'flex-start'}}>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "flex-start",
+                }}
+              >
                 <Avatar
                   size={45}
                   src={item.avatar}
-                  style={{ marginRight: "20px",marginTop: "20px" }}
+                  style={{ marginRight: "20px", marginTop: "20px" }}
                 />
                 <Comment
-                  style={{flex: "1"}}
+                  style={{ flex: "1" }}
                   author={<div style={{ color: "#fff" }}>{item.username}</div>}
                   content={<p>{item.comment}</p>}
                   datetime={
@@ -164,27 +171,35 @@ export default memo(function Detail(props) {
               </div>
             </div>
             {/* 已登陆 */}
-            <div className={`reader ${isHide1 === true ? "hidden" : ""}`}>
-              <Avatar size={45} src={avatar} style={{ marginRight: "20px" }} />
-              <div className="reader-text">
-                <div>{username}</div>
-                <div>{mydate.toLocaleDateString()}</div>
+            <div className={isHide1 === true ? "hidden" : ""}>
+              <div className="reader">
+                <Avatar
+                  size={45}
+                  src={avatar}
+                  style={{ marginRight: "20px" }}
+                />
+                <div className="reader-text">
+                  <div>{username}</div>
+                  <div>{mydate.toLocaleDateString()}</div>
+                </div>
               </div>
-            </div>
-            <div className="text-bg">
-              <TextArea rows={4} onChange={onChange} />
-            </div>
-            <div
-              className="submit-button"
-              onClick={commitComment}
-              style={{ cursor: "pointer" }}
-            >
-              <span>Button</span>
-              <div className="wave"></div>
+              <div className="text-bg">
+                <TextArea rows={4} onChange={onChange} />
+              </div>
+              <div
+                className="submit-button"
+                onClick={commitComment}
+                style={{ cursor: "pointer" }}
+              >
+                <span>Button</span>
+                <div className="wave"></div>
+              </div>
             </div>
           </div>
         </div>
-        <div className={`toc ${topHide ? 'top-hide': 'top-show'}`}>{tocify && tocify.render()}</div>
+        <div className={`toc ${topHide ? "top-hide" : "top-show"}`}>
+          {tocify && tocify.render()}
+        </div>
       </DetailStyle>
     </div>
   );

@@ -11,7 +11,7 @@ export default memo(function Card() {
     }),
     shallowEqual
   );
-
+    console.log('=====homeworks=====',homeWorks)
   return (
     <CardStyle>
       <div className="card-content">
@@ -27,9 +27,9 @@ export default memo(function Card() {
         </div>
         <div className="card-title1">WORKS</div>
         <div className="card-works">
-          {homeWorks.map((item, index) => {
-            return <WorksList img={item} key={index} />;
-          })}
+          {homeWorks?.slice(0,9).map((item, index) => {
+            return <WorksList img={item.picUrl} key={index} />;
+          })} 
         </div>
         <div className="card-title1">POPULAR PAGES</div>
         <div className="card-pages">

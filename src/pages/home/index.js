@@ -5,7 +5,7 @@ import TopImg from './c-cpns/top-img'
 import WorkCard from './c-cpns/work-card';
 import AppFooter from "../../components/App-footer";
 import {
-  getHomeBannersAction, getHomePagesAction, getHomeWorksAction, getPageTypesAction
+  getHomeBannersAction, getHomePagesAction, getPicturesAction, getPageTypesAction
 } from "./store/actionCreators.js";
 
 export default memo(function Home() {
@@ -13,7 +13,7 @@ export default memo(function Home() {
 
   useEffect(() => {
     dispatch(getHomeBannersAction());
-    dispatch(getHomeWorksAction());
+    dispatch(getPicturesAction());
     dispatch(getHomePagesAction());
     dispatch(getPageTypesAction());
   }, [dispatch]);

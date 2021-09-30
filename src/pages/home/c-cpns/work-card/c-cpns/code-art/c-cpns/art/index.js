@@ -3,21 +3,18 @@ import { shallowEqual, useSelector } from "react-redux";
 import { ArtStyle } from "./style";
 export default memo(function Art() {
 
-  const { homeWorks } = useSelector(
+  const { workImages } = useSelector(
     (state) => ({
-      homeWorks: state.getIn(["home", "homeWorks"]),
+      workImages: state.getIn(["home", "homeWorks"]),
     }),
     shallowEqual
   );
-  if(homeWorks === null){
-    return null;
-  }
   return (
     <ArtStyle>
-      {homeWorks.slice(0, 5).map((item, index) => {
+      {workImages?.slice(0, 5).map((item, index) => {
         return (
           <img
-            src={item}
+            src={item.picUrl}
             alt=""
             key={index}
             className="work-list"

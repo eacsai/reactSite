@@ -13,7 +13,6 @@ import { PageStyle, TypeList } from "./style";
 
 export default memo(function PageAll() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getHomePagesAction());
     dispatch(getPageTypesAction());
@@ -36,7 +35,6 @@ export default memo(function PageAll() {
   console.log(listData);
   const indexChange = useCallback(
     (item, index) => {
-      console.log(item, pageData[0].type);
       setCurrentIndex(index);
       if (item === "All") {
         setListData(pageData);
@@ -98,7 +96,7 @@ export default memo(function PageAll() {
           >
             <List.Item.Meta
               avatar={<Avatar src={item.avatar} />}
-              title={<a href="https://innovise.top/#/pages/detail">{item.title}</a>}
+              title={<a href="http://localhost:3001/index#/pages/detail">{item.title}</a>}
               description={item.description}
             />
             <div dangerouslySetInnerHTML={{__html:marked(item.introduce.length>150? (item.introduce.slice(0,150)+"...") : item.introduce)}}>

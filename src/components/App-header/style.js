@@ -12,10 +12,13 @@ export const HeaderWrapper = styled.div`
     display:flex;
     height: auto;
   }
-  .content {
+  .container {
     flex:1;
-    position: relative;
     text-align:center;
+  }
+  .content {
+    display:inline-block;
+    position: relative;
     line-height:53px;
     font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
     font-size: 11px;
@@ -24,13 +27,31 @@ export const HeaderWrapper = styled.div`
     text-transform: uppercase;
     color: #444444;
   }
-  .content:after {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-top: 2px solid #656565;
-    border-right: 2px solid #656565;
-    transform: translate(50%,-25%) rotate(135deg);
+  .content::after {
+    position: absolute;
+    top: 20px;
+    right: -15px;
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    transform: rotate(225deg)
+  }
+  .subnav li{
+    max-height: 0;
+    transition: all 0.25s ease-out;
+    overflow: hidden;
+    background-color: #fff;
+    line-height:30px;
+    cursor: pointer;
+  }
+  .subnav li:hover{
+    background-color: #d7d1d1;
+    transition: all 0.25s ease-in;
+  }
+  .container:hover .subnav li{
+    max-height: 50px;
+    transition: all 0.25s ease-in;
   }
 `

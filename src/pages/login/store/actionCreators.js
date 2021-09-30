@@ -23,18 +23,18 @@ const loginFailedAction = (msg) => ({
 
 
 export const getLoginAction = (username, password) => {
+  console.log('wqw--start')
   return (dispatch) => {
     if (!username || !password) {
       dispatch(signFailedAction("密码账号不能为空"));
       return
     }
     login(username, password).then((res) => {
-      console.log('===============================',res)
       if (res.status === 200) {
+        console.log('========wqw.data=======',res.data)
         const { token } = res.data;
         localStorage.setItem('jwToken',token)
         setAuthToken(token)
-        console.log('res',res.data)
         dispatch(loginSuccessAction(res.data));
       } else {
         dispatch(loginFailedAction(res.msg));

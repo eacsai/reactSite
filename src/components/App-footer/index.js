@@ -1,21 +1,15 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { FooterStyle } from "./style";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { getHomeWorksAction } from "../../pages/home/store/actionCreators";
 
 export default memo(function AppFooter() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getHomeWorksAction());
-  }, [dispatch]);
-
-  const { homewWorks } = useSelector(
-    (state) => ({
-      homewWorks: state.getIn(["home", "homeWorks"]),
-    }),
-    shallowEqual
-  );
+  const homewWorks = [
+    "https://tva1.sinaimg.cn/large/008i3skNly1gt3n5ez0zuj60u00u0tgg02.jpg",
+    "https://tva1.sinaimg.cn/large/008i3skNly1gt2l744toyj308c05kjrl.jpg",
+    "https://tva1.sinaimg.cn/large/008i3skNly1gt3n541oz2j30u00u0tga.jpg",
+    "https://tva1.sinaimg.cn/large/008i3skNly1gt2g78krfoj30jg0epgnm.jpg",
+    "https://tva1.sinaimg.cn/large/008i3skNly1gt3n6bnztwj30u00u0q9l.jpg",
+    "https://tva1.sinaimg.cn/large/008i3skNly1gt3nvolbv5j30u00u0n6y.jpg"
+  ]
   return (
     <FooterStyle>
       <div className="foot-text">

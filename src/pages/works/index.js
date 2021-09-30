@@ -10,7 +10,9 @@ export default memo(function Works() {
   useEffect(() => {
     dispatch(getPageTypesAction());
   }, [dispatch]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { workImages } = useSelector(
     (state) => ({
       workImages: state.getIn(["works", "workImages"]),
@@ -19,9 +21,9 @@ export default memo(function Works() {
   );
   return (
     <ArtStyle>
-      <BackTop/>
-      <ImgList workImages = {workImages}></ImgList>
-      <AppFooter/>
-    </ArtStyle> 
+      <BackTop />
+      <ImgList workImages={workImages}></ImgList>
+      <AppFooter />
+    </ArtStyle>
   );
 });
